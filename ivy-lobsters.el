@@ -2,6 +2,7 @@
 
 ;; Copyright (C) 2017 by Julien Blanchard
 ;; Author: Julien Blanchard <https://github.com/julienXX>
+;; URL: https://github.com/julienXX/ivy-lobsters
 ;; Package: ivy-lobsters
 ;; Package-Requires: ((ivy "0.8.0") (cl-lib "0.5"))
 ;; Version: 0.1
@@ -53,7 +54,7 @@
                   t)))
       (unless ret
         (error "Error: Can't get JSON response"))
-      (setq ivy-lobsters-stories (ivy-lobsters-parse json)))))
+      json)))
 
 (defun ivy-lobsters-parse (stories)
   "Parse the json provided by STORIES."
@@ -80,12 +81,14 @@
         (or (ivy-lobsters-tree-assoc key x) (ivy-lobsters-tree-assoc key y))))))
 
 (defun ivy-lobsters ()
-  "Bring Ivy frontend to choose and open a story."
+  "Show latest lobste.rs stories."
   (interactive)
-  (ivy-lobsters-get-posts)
-  (ivy-read (concat "Lobste.rs latest stories: ") ivy-lobsters-stories
-            :action (lambda (story)
-                      (browse-url (plist-get (cdr story) :url)))))
+  (with-temp-message "Loading stories..."
+    (let ((stories (ivy-lobsters-parse (ivy-lobsters-get-posts))))
+      (ivy-read "Lobste.rs latest stories: "
+                stories
+                :action (lambda (story)
+                          (browse-url (plist-get (cdr story) :url)))))))
 
 (ivy-set-actions
  t
