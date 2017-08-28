@@ -7,6 +7,8 @@
 
 `ivy-lobsters.el` is an ivy front-end for [lobste.rs](https://lobste.rs/).
 
+If you prefer helm, check [helm-lobste.rs](https://github.com/julienXX/helm-lobste.rs).
+
 
 ## Screenshot
 
