@@ -10,7 +10,7 @@
 
 ## Screenshot
 
-![ivy-lobsters.png](https://d26dzxoao6i3hh.cloudfront.net/items/2v1p0Z1j0Y29303o3G2G/Screenshot%202017-08-28%2015.28.29.png)
+![ivy-lobsters.png](https://d26dzxoao6i3hh.cloudfront.net/items/1N3l1x3v293S2H3C3x1h/ivy-lobsters.png)
 
 
 ## Requirements
