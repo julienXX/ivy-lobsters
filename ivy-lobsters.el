@@ -39,8 +39,6 @@
   "Variable to define lobste.rs newest articles url."
   :type 'string :group 'ivy-lobsters)
 
-(defvar ivy-lobsters-stories '())
-
 (defun ivy-lobsters-get-posts ()
   "Get newest posts json and store parsed stories."
   (with-temp-buffer
@@ -59,18 +57,15 @@
 (defun ivy-lobsters-parse (stories)
   "Parse the json provided by STORIES."
   (cl-loop for story being the elements of stories
-           for score = (cdr (ivy-lobsters-tree-assoc 'score story))
-           for title = (decode-coding-string
-                        (string-make-multibyte
-                         (cdr (ivy-lobsters-tree-assoc 'title story)))
-                        'utf-8)
-           for url = (cdr (ivy-lobsters-tree-assoc 'url story))
-           for comments = (cdr (ivy-lobsters-tree-assoc 'comment_count story))
-           for comments-url = (cdr (ivy-lobsters-tree-assoc 'comments_url story))
-           for cand = (format "%s %s (%d comments)"
+           for score = (ivy-lobsters-extract 'score story)
+           for title = (ivy-lobsters-format-title story)
+           for url = (ivy-lobsters-extract 'url story)
+           for comment-count = (ivy-lobsters-extract 'comment_count story)
+           for comments-url = (ivy-lobsters-extract 'comments_url story)
+           for cand = (format "%s %s (%s comments)"
                               (format "[%d]" score)
                               title
-                              comments)
+                              comment-count)
            collect (cons cand (list :url url :score score :comments-url comments-url))))
 
 (defun ivy-lobsters-tree-assoc (key tree)
@@ -79,6 +74,17 @@
     (cl-destructuring-bind (x . y)  tree
       (if (eql x key) tree
         (or (ivy-lobsters-tree-assoc key x) (ivy-lobsters-tree-assoc key y))))))
+
+(defun ivy-lobsters-extract (key story)
+  "Extract KEY from STORY tree-assoc."
+  (cdr (ivy-lobsters-tree-assoc key story)))
+
+(defun ivy-lobsters-format-title (story)
+  "Format STORY title."
+  (decode-coding-string
+   (string-make-multibyte
+    (ivy-lobsters-extract 'title story))
+   'utf-8))
 
 (defun ivy-lobsters ()
   "Show latest lobste.rs stories."
