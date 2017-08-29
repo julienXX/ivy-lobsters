@@ -97,7 +97,7 @@
                           (browse-url (plist-get (cdr story) :url)))))))
 
 (ivy-set-actions
- t
+ 'ivy-lobsters
  '(("c" (lambda (story)
           (browse-url (plist-get (cdr story) :comments-url))) "Browse Comments")))
 
