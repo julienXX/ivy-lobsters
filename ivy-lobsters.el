@@ -86,6 +86,7 @@
     (ivy-lobsters-extract 'title story))
    'utf-8))
 
+;;;###autoload
 (defun ivy-lobsters ()
   "Show latest lobste.rs stories."
   (interactive)
