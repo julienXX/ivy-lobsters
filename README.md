@@ -1,6 +1,6 @@
 # ivy-lobsters.el
 
-<!-- [![MELPA](http://melpa.org/packages/ivy-lobsters-badge.svg)](http://melpa.org/#/ivy-lobsters) -->
+[![MELPA](http://melpa.org/packages/ivy-lobsters-badge.svg)](http://melpa.org/#/ivy-lobsters)
 
 
 ## Introduction
