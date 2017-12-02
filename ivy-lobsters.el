@@ -110,7 +110,7 @@
 (ivy-set-actions
  'ivy-lobsters
  '(("c" (lambda (story)
-          (ivy-lobsters-browse (plist-get (cdr story) :url))) "Browse Comments")))
+          (ivy-lobsters-browse (plist-get (cdr story) :comments-url))) "Browse Comments")))
 
 
 (provide 'ivy-lobsters)
