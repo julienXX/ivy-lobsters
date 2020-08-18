@@ -1,6 +1,6 @@
 ;;; ivy-lobsters.el --- Browse lobste.rs stories with ivy.
 
-;; Copyright (C) 2017 by Julien Blanchard
+;; Copyright (C) 2020 by Julien Blanchard
 ;; Author: Julien Blanchard <https://github.com/julienXX>
 ;; URL: https://github.com/julienXX/ivy-lobsters
 ;; Package: ivy-lobsters
