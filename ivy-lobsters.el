@@ -30,6 +30,7 @@
 (require 'cl-lib)
 (require 'ivy)
 (require 'browse-url)
+(require 'json)
 
 (defgroup  ivy-lobsters nil
   "Customs for `ivy-lobsters'"
